@@ -1,36 +1,83 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Our Trip</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+        .book-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 80%;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="main-head">
-        <h1>Book Our Trip</h1>
-    </div>
+    <h1>Book Our Trip</h1>
 
-    <div>
-        <h2 class="sat">Sree Angalaeswari Travels</h2>
-    </div>
+    <h2>Sree Angalaeswari Travels</h2>
 
-    <a href="https://sreeangalaeswaritravel.vercel.app/" class="book-btn">
-        Book Here
-    </a> <br>
+    <!-- FORM -->
+    <input type="date" id="date"><br>
 
-     <div>
-        <h2 class="sat">Sm Design Work</h2>
-    </div>
-     <br>
-    
+    <input type="text" id="from" placeholder="From Location"><br>
+
+    <input type="text" id="to" placeholder="To Location"><br>
+
+    <input type="number" id="km" placeholder="Total KM"><br>
+
+    <button class="book-btn" onclick="sendWhatsApp()">
+        Book via WhatsApp
+    </button>
+
+    <br><br>
+
+    <h2>Sm Design Work</h2>
+
     <a href="tel:6369061301" class="book-btn">
         Order Now
     </a>
-    
+
+    <script>
+        function sendWhatsApp() {
+            let date = document.getElementById("date").value;
+            let from = document.getElementById("from").value;
+            let to = document.getElementById("to").value;
+            let km = document.getElementById("km").value;
+
+            if(!date || !from || !to || !km){
+                alert("Fill all details!");
+                return;
+            }
+
+            let message = `🚗 Trip Booking Request
+Date: ${date}
+From: ${from}
+To: ${to}
+Distance: ${km} KM`;
+
+            let phone = "916369061301"; // 91 + number
+
+            let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
+
 </body>
 </html>
